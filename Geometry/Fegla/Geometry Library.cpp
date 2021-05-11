@@ -1,3 +1,6 @@
+// Check if you need long double.
+// Try to handle the Corner Cases.
+
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
