@@ -1,6 +1,6 @@
 
-		ll lo = 0 , hi = n-1 , mid ; 
-		ll ans = min( f(lo),f(hi) ) ;
+	ll lo = 0 , hi = n-1 , mid ; 
+	ll ans = min( f(lo),f(hi) ) ;
  
         while ( hi-lo > 1 ){
         mid = (lo+hi)/2 ;
