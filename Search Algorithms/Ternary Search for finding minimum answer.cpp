@@ -1,5 +1,5 @@
 
-	ll lo = 0 , hi = n-1 , mid ; 
+	ll lo = MinVal , hi = MAxVal , mid ; 
 	ll ans = min( f(lo),f(hi) ) ;
  
         while ( hi-lo > 1 ){
