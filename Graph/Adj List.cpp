@@ -6,7 +6,7 @@
 const int N = 1e5 + 5, M = 1e6 + 5;
 //int cost[M] , dis[N];
 struct ADJ {
-    int head[N], nxt[M], to[M], ne ;
+    int n ,head[N], nxt[M], to[M], ne ;
     
     void addEdge(int f, int t /*,int cst */) {
         nxt[ne] = head[f];
@@ -20,7 +20,13 @@ struct ADJ {
         addEdge(t, f /*, cst*/);
     }
     
+    int addNode(){
+        head[n]=-1;
+        return n++;
+    }
+    
     void init(int n) {
+//        this->n=n;
         memset(head, -1, n * sizeof head[0]);
 //        memset(dis , 0x3f3f3f3f , n*(sizeof dis[0]) );
         ne = 0;
