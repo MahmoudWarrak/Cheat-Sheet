@@ -1,3 +1,7 @@
+// Remember to check if you need long long. 
+// Remember to make N equals power of twos.
+// You may need another functions, build 'em all.
+
 const int N = 1<<18 ; // ~= 1e5 ;
 struct BIT
 {
@@ -29,6 +33,4 @@ struct BIT
         return st;
     }
 };
-// Remember to check if you need long long. 
-// Remember to make N equals power of twos.
-// You may need another functions, build 'em all.
+
