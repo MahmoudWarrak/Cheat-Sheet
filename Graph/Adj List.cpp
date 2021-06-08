@@ -4,11 +4,11 @@
 // M equals maximum number of edges..
 
 const int N = 1e5 + 5, M = 1e6 + 5;
-// int cost[M] , dis[N];
+//int cost[M] , dis[N];
 struct ADJ {
     int head[N], nxt[M], to[M], ne ;
     
-    void addEdge(int f, int t ,/*int cst */) {
+    void addEdge(int f, int t /*,int cst */) {
         nxt[ne] = head[f];
         to[ne] = t;
 //        cost[ne] = cst ;
@@ -16,8 +16,8 @@ struct ADJ {
     }
     
     void addBiEdge(int f , int t ,/*int cst*/){
-        addEdge(f, t ,/* cst*/) ;
-        addEdge(t, f ,/* cst*/);
+        addEdge(f, t /*, cst*/) ;
+        addEdge(t, f /*, cst*/);
     }
     
     void init(int n) {
