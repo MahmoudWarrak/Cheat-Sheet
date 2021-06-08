@@ -3,6 +3,8 @@
 // N equals maximum number of nodes..
 // M equals maximum number of edges..
 
+const int N = 1e5 + 5, M = 1e6 + 5;
+
 struct ADJ {
     int head[N], nxt[M], to[M], ne;// cost[M] 
     
