@@ -22,6 +22,7 @@ struct ADJ {
     
     void init(int n) {
         memset(head, -1, n * sizeof head[0]);
+//        memset(dis , 0x3f3f3f3f , n*(sizeof dis[0]) );
         ne = 0;
     }
 
