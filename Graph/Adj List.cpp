@@ -1,12 +1,12 @@
-// check if there is cost for the edges..
+// check if there is cost on edges..
 // check if you need to reset something else in init function..
 // N equals maximum number of nodes..
 // M equals maximum number of edges..
 
 const int N = 1e5 + 5, M = 1e6 + 5;
-
+// int cost[M] , dis[N];
 struct ADJ {
-    int head[N], nxt[M], to[M], ne;// cost[M] 
+    int head[N], nxt[M], to[M], ne ;
     
     void addEdge(int f, int t/*int cst */) {
         nxt[ne] = head[f];
