@@ -1,4 +1,4 @@
-// check if there is cost on edges..
+// check if there are costs on edges..
 // check if you need to reset something else in init function..
 // N equals maximum number of nodes..
 // M equals maximum number of edges..
