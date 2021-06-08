@@ -8,7 +8,7 @@ const int N = 1e5 + 5, M = 1e6 + 5;
 struct ADJ {
     int head[N], nxt[M], to[M], ne ;
     
-    void addEdge(int f, int t/*int cst */) {
+    void addEdge(int f, int t ,/*int cst */) {
         nxt[ne] = head[f];
         to[ne] = t;
 //        cost[ne] = cst ;
