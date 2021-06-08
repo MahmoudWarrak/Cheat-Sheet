@@ -1,4 +1,4 @@
-const int N = 1e4 + 5, M = 1e6 + 5;
+const int N = 1e5 + 5, M = 1e6 + 5;
 
 struct ADJ {
     int head[N], nxt[M], to[M], ne;
