@@ -11,7 +11,7 @@ struct ADJ {
     void addEdge(int f, int t/*int cst */) {
         nxt[ne] = head[f];
         to[ne] = t;
-//      cost[ne] = cst ;
+//        cost[ne] = cst ;
         head[f] = ne++;
     }
     
