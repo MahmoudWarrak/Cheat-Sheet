@@ -43,7 +43,7 @@ void tarjanDFS(int u, int pe) {
           
             if ( lw[v] >= dfsTime[u] ){
                 if( ~pe || dfsTime[v] > dfsTime[u]+1 )
-                  isArt[u] = vid ;
+                    isArt[u] = vid ;
                 int id = comps.addNode() ;
                 comps.addEdge ( id , u ) ;
                 do {
