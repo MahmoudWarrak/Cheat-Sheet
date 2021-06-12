@@ -1,3 +1,5 @@
+// BiEdges have to be consecutive!!
+ 
 const int N = 1e4 + 5, M = 1e5 + 5;
 int n;
 
@@ -57,7 +59,6 @@ void tarjanDFS(int u, int pe) {
 
         }else{
             lw[u] = min( lw[u] , dfsTime[v] ) ;
-
         }
     }
 }
