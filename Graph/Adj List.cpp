@@ -15,7 +15,7 @@ struct ADJ {
         head[f] = ne++;
     }
     
-    void addBiEdge(int f , int t ,/*int cst*/){
+    void addBiEdge(int f , int t /*,int cst*/){
         addEdge(f, t /*, cst*/) ;
         addEdge(t, f /*, cst*/);
     }
@@ -32,4 +32,4 @@ struct ADJ {
         ne = 0;
     }
 
-};
+}adj;
