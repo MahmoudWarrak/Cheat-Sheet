@@ -65,6 +65,7 @@ void tarjanDFS(int u, int pe) {
 
 void T() {
     ++vid ;
+    comps.init(0);
     ncp = 0 ;
     curTime = 0 ;
     for ( int i = 0 ; i < n ; ++i )
