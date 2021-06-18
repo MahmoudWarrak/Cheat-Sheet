@@ -1,3 +1,29 @@
+typedef pair<ll, ll>        pll;
+
+const int N = 1e5 + 5, M = 1e6 + 5;
+ll cost[M] , dis[N];
+struct ADJ {
+    int head[N], nxt[M], to[M], ne ;
+
+    void addEdge(int f, int t, int cst ) {
+        nxt[ne] = head[f];
+        to[ne] = t;
+        cost[ne] = cst ;
+        head[f] = ne++;
+    }
+
+    void addBiEdge(int f , int t ,int cst){
+        addEdge(f, t ,cst) ;
+        addEdge(t, f ,cst);
+    }
+
+    void init(int n) {
+        memset(head, -1, n * sizeof head[0]);
+        memset ( dis , 0x3f3f3f3f , n*(sizeof dis[0]) ) ;
+        ne = 0;
+    }
+
+}adj;
 
 ll Dij ( int src ){
     priority_queue<pll> pq;
