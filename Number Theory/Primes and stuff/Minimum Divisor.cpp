@@ -11,7 +11,7 @@ void LinearSieve (int n) {
 		for ( int j = 0 ; j < prime.size () && i * prime[j] < n ; ++j ) {
 			IsComposite [i * prime[j]] = i ;
 			if ( !( i % prime[j] ) )
-                break ;
+               		    break ;
 		}
 	}
 	LeastDivisor[0] = LeastDivisor[1] = 1 ;
