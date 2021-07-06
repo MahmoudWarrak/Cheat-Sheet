@@ -1,14 +1,9 @@
 // Check if you need long double.
 // Try to handle the Corner Cases.
 
-#include <vector>
-#include <algorithm>
-#include <cstdlib>
-#include <complex>
-#include <iostream>
-using namespace std;
+#include <bits/stdc++.h>
 
-typedef complex<double> point;
+typedef complex<long double> point;
 #define sz(a) ((int)(a).size())
 #define all(n) (n).begin(),(n).end()
 #define EPS 1e-9
@@ -18,7 +13,7 @@ typedef complex<double> point;
 #define vec(a,b) ((b)-(a))
 #define polar(r,t) ((r)*exp(point(0,(t))))
 #define angle(v) (atan2((v).Y,(v).X))
-#define length(v) ((double)hypot((v).Y,(v).X))
+#define length(v) ((long double)hypot((v).Y,(v).X))
 #define lengthSqr(v) (dot(v,v))
 #define dot(a,b) ((conj(a)*(b)).real())
 #define cross(a,b) ((conj(a)*(b)).imag())
@@ -38,8 +33,8 @@ enum STATE {
 bool intersect(const point &a, const point &b, const point &p, const point &q,
               point &ret) {
     //handle degenerate cases (2 parallel lines, 2 identical lines,   line is 1 point)
-    double d1 = cross(p - a, b - a);
-    double d2 = cross(q - a, b - a);
+    ld d1 = cross(p - a, b - a);
+    ld d2 = cross(q - a, b - a);
     ret = (d1 * q - d2 * p) / (d1 - d2);
     if(fabs(d1 - d2) > EPS) return 1;
     return 0;
@@ -47,8 +42,8 @@ bool intersect(const point &a, const point &b, const point &p, const point &q,
 //int intersect(const point &a, const point &b, const point &p, const point &q,
 //              point &ret) {
 //    //handle degenerate cases (2 parallel lines, 2 identical lines,   line is 1 point)
-//    double d1 = cross(p - a, b - a);
-//    double d2 = cross(q - a, b - a);
+//    ld d1 = cross(p - a, b - a);
+//    ld d2 = cross(q - a, b - a);
 //    ret = (d1 * q - d2 * p) / (d1 - d2);
 //    if(fabs(d1 - d2) > EPS) return 1;
 //    if ( !d1 && !d2 )
@@ -73,13 +68,13 @@ bool pointOnSegment(const point& a, const point& b, const point& p) {
     return pointOnRay(a, b, p) && pointOnRay(b, a, p);
 }
 
-double pointLineDist(const point& a, const point& b, const point& p) {
+ld pointLineDist(const point& a, const point& b, const point& p) {
 	// handle degenrate case: (a,b) is point
 
 	return fabs(cross(vec(a,b),vec(a,p)) / length(vec(a,b)));
 }
 
-double pointSegmentDist(const point& a, const point& b, const point& p) {
+ld pointSegmentDist(const point& a, const point& b, const point& p) {
 	if (dot(vec(a,b),vec(a,p)) < EPS)
 		return length(vec(a,p));
 	if (dot(vec(b,a),vec(b,p)) < EPS)
@@ -91,25 +86,25 @@ int segmentLatticePointsCount(int x1, int y1, int x2, int y2) {
 	return abs(__gcd(x1 - x2, y1 - y2)) + 1;
 }
 
-double triangleAreaBH(double b, double h) {
+ld triangleAreaBH(ld b, ld h) {
 	return b * h / 2;
 }
 
-double triangleArea2sidesAngle(double a, double b, double t) {
+ld triangleArea2sidesAngle(ld a, ld b, ld t) {
 	return fabs(a * b * sin(t) / 2);
 }
 
-double triangleArea2anglesSide(double t1, double t2,
-		double s) {
+ld triangleArea2anglesSide(ld t1, ld t2,
+		ld s) {
 	return fabs(s * s * sin(t1) * sin(t2) / (2 * sin(t1 + t2)));
 }
 
-double triangleArea3sides(double a, double b, double c) {
-	double s((a + b + c) / 2);
+ld triangleArea3sides(ld a, ld b, ld c) {
+	ld s((a + b + c) / 2);
 	return sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
-double triangleArea3points(const point& a, const point& b, const point& c) {
+ld triangleArea3points(const point& a, const point& b, const point& c) {
 	return fabs(cross(a,b) + cross(b,c) + cross(c,a)) / 2;
 }
 
@@ -119,9 +114,9 @@ int picksTheorm(int a, int b) {
 }
 
 //get angle opposite to side a
-double cosRule(double a, double b, double c) {
+ld cosRule(ld a, ld b, ld c) {
         // Handle denom = 0
-	double res = (b * b + c * c - a * a) / (2 * b * c);
+	ld res = (b * b + c * c - a * a) / (2 * b * c);
 	if ( fabs(res-1)<EPS)
                 res = 1;
         if ( fabs(res+1)<EPS)
@@ -129,9 +124,9 @@ double cosRule(double a, double b, double c) {
 	return acos(res);
 }
 
-double sinRuleAngle(double s1, double s2, double a1) {
+ld sinRuleAngle(ld s1, ld s2, ld a1) {
         // Handle denom = 0
-	double res = s2 * sin(a1) / s1;
+	ld res = s2 * sin(a1) / s1;
 	if ( fabs(res-1)<EPS)
                 res = 1;
         if ( fabs(res+1)<EPS)
@@ -139,21 +134,21 @@ double sinRuleAngle(double s1, double s2, double a1) {
 	return asin(res);
 }
 
-double sinRuleSide(double s1, double a1, double a2) {
+ld sinRuleSide(ld s1, ld a1, ld a2) {
         // Handle denom = 0
-	double res = s1 * sin(a2) / sin(a1);
+	ld res = s1 * sin(a2) / sin(a1);
 	return fabs(res);
 }
 
 int circleLineIntersection(const point& p0, const point& p1, const point& cen,
-		double rad, point& r1, point & r2) {
+		ld rad, point& r1, point & r2) {
 
 	// handle degenerate case if p0 == p1
-	double a, b, c, t1, t2;
+	ld a, b, c, t1, t2;
 	a = dot(p1-p0,p1-p0);
 	b = 2 * dot(p1-p0,p0-cen);
 	c = dot(p0-cen,p0-cen) - rad * rad;
-	double det = b * b - 4 * a * c;
+	ld det = b * b - 4 * a * c;
 	int res;
 	if (fabs(det) < EPS)
 		det = 0, res = 1;
@@ -181,17 +176,17 @@ int circleLineIntersection(const point& p0, const point& p1, const point& cen,
  *  p  h   c-h  q
  */
 
-int dcmp(const double &a, const double &b) {
+int dcmp(const ld &a, const ld &b) {
     if (fabs(a - b) < EPS)
         return 0;
     return ((a > b) << 1) - 1;
 }
 
-int triangleThirdPoint(const point &p, const point &q, const double &a,
-                       const double &b, point &u1, point &u2) {
+int triangleThirdPoint(const point &p, const point &q, const ld &a,
+                       const ld &b, point &u1, point &u2) {
     point pq = vec(p, q);
-    double c = length(pq);
-    double arr[] = { a, b, c };
+    ld c = length(pq);
+    ld arr[] = { a, b, c };
     sort(arr, arr + 3);
     if (dcmp(arr[0] + arr[1], arr[2]) < 0)
         return false;
@@ -205,10 +200,10 @@ int triangleThirdPoint(const point &p, const point &q, const double &a,
     //0=b^2-c^2+2ch-a^2
     //2ch=a^2-b^2+c^2
     //h=(a^2-b^2+c^2)/2c
-    double h = (a * a - b * b + c * c) / (2.0 * c);
-    double sq=a * a - h * h;
+    ld h = (a * a - b * b + c * c) / (2.0 * c);
+    ld sq=a * a - h * h;
     if(!dcmp(sq,0))sq=0;
-    double m = sqrt(sq);
+    ld m = sqrt(sq);
     point npq = normalize(pq);
     point prp = perp(npq);
     u1 = p + (npq * h) + m * prp;
@@ -216,16 +211,16 @@ int triangleThirdPoint(const point &p, const point &q, const double &a,
     return 1 + (dcmp(arr[0] + arr[1], arr[2]) != 0);
 }
 
-int circleCircleIntersection(const point &c1, const double&r1,
-		const point &c2, const double&r2, point &res1, point &res2) {
+int circleCircleIntersection(const point &c1, const ld&r1,
+		const point &c2, const ld&r2, point &res1, point &res2) {
 	if (same(c1,c2) && fabs(r1 - r2) < EPS) {
 		res1 = res2 = c1;
 		return fabs(r1) < EPS ? 1 : OO;
 	}
-	double len = length(vec(c1,c2));
+	ld len = length(vec(c1,c2));
 	if (fabs(len - (r1 + r2)) < EPS || fabs(fabs(r1 - r2) - len) < EPS) {
 		point d, c;
-		double r;
+		ld r;
 		if (r1 > r2)
 			d = vec(c1,c2), c = c1, r = r1;
 		else
@@ -235,20 +230,20 @@ int circleCircleIntersection(const point &c1, const double&r1,
 	}
 	if (len > r1 + r2 || len < fabs(r1 - r2))
 		return 0;
-	double a = cosRule(r2, r1, len);
+	ld a = cosRule(r2, r1, len);
 	point c1c2 = normalize(vec(c1,c2)) * r1;
 	res1 = rotate(c1c2,a) + c1;
 	res2 = rotate(c1c2,-a) + c1;
 	return 2;
 }
 
-void circle2(const point& p1, const point& p2, point& cen, double& r) {
+void circle2(const point& p1, const point& p2, point& cen, ld& r) {
 	cen = mid(p1,p2);
 	r = length(vec(p1,p2)) / 2;
 }
 
 bool circle3(const point& p1, const point& p2, const point& p3, point& cen,
-		double& r) {
+		ld& r) {
 	point m1 = mid(p1,p2);
 	point m2 = mid(p2,p3);
 	point perp1 = perp(vec(p1,p2));
@@ -258,8 +253,8 @@ bool circle3(const point& p1, const point& p2, const point& p3, point& cen,
 	return res;
 }
 
-STATE circlePoint(const point & cen, const double & r, const point& p) {
-	double lensqr = lengthSqr(vec(cen,p));
+STATE circlePoint(const point & cen, const ld & r, const point& p) {
+	ld lensqr = lengthSqr(vec(cen,p));
 	if (fabs(lensqr - r * r) < EPS)
 		return BOUNDRY;
 	if (lensqr < r * r)
@@ -267,7 +262,7 @@ STATE circlePoint(const point & cen, const double & r, const point& p) {
 	return OUT;
 }
 
-int tangentPoints(const point & cen, const double & r, const point& p,
+int tangentPoints(const point & cen, const ld & r, const point& p,
 		point &r1, point &r2) {
 	STATE s = circlePoint(cen, r, p);
 	if (s != OUT) {
@@ -275,8 +270,8 @@ int tangentPoints(const point & cen, const double & r, const point& p,
 		return s == BOUNDRY;
 	}
 	point cp = vec(cen,p);
-	double h = length(cp);
-	double a = acos(r / h);
+	ld h = length(cp);
+	ld a = acos(r / h);
 	cp = normalize(cp) * r;
 	r1 = rotate(cp,a) + cen;
 	r2 = rotate(cp,-a) + cen;
@@ -285,10 +280,10 @@ int tangentPoints(const point & cen, const double & r, const point& p,
 
 typedef pair<point, point> segment;
 
-void getCommonTangents(point c1, double r1, point c2, double r2, vector<segment> &res) {
+void getCommonTangents(point c1, ld r1, point c2, ld r2, vector<segment> &res) {
   if (r1 < r2) swap(r1, r2), swap(c1, c2);
-  double d = length(c1 - c2);
-  double theta = acos((r1 - r2) / d);
+  ld d = length(c1 - c2);
+  ld theta = acos((r1 - r2) / d);
   point v = c2 - c1;
   v = v / hypot(v.imag(), v.real());
   point v1 = v * exp(point(0, theta));
@@ -310,7 +305,7 @@ void getCommonTangents(point c1, double r1, point c2, double r2, vector<segment>
 #define MAXPOINTS 100000
 point p[MAXPOINTS], r[3], cen;
 int ps, rs;
-double rad;
+ld rad;
 
 void mec() {
 	if (rs == 3) {
@@ -339,8 +334,8 @@ void mec() {
 
 //to check if the points are sorted anti-clockwise or clockwise
 //remove the fabs at the end and it will return -ve value if clockwise
-double polygonArea(const vector<point>&p) {
-	double res = 0;
+ld polygonArea(const vector<point>&p) {
+	ld res = 0;
 	for (int i = 0; i < sz(p); i++) {
 		int j = (i + 1) % sz(p);
 		res += cross(p[i],p[j]);
@@ -354,30 +349,24 @@ double polygonArea(const vector<point>&p) {
 /*
 point polyginCentroid(vector<point> &polygon) {
 	point res(0, 0);
-	double a = 0;
-
+	ld a = 0;
 	for (int i = 0; i < (int) polygon.size(); i++) {
 		int j = (i + 1) % polygon.size();
-
 		res.X += (polygon[i].X + polygon[j].X) * (polygon[i].X * polygon[j].Y
 				- polygon[j].X * polygon[i].Y);
-
 		res.Y += (polygon[i].Y + polygon[j].Y) * (polygon[i].X * polygon[j].Y
 				- polygon[j].X * polygon[i].Y);
-
 		a += polygon[i].X * polygon[j].Y - polygon[i].Y * polygon[j].X;
 	}
-
 	a *= 0.5;
 	res.X /= 6 * a;
 	res.Y /= 6 * a;
-
 	return res;
 }
 */
 
 int picksTheorm(vector<point>& p) {
-	double area = 0;
+	ld area = 0;
 	int bound = 0;
 	for (int i = 0; i < sz(p); i++) {
 		int j = (i + 1) % sz(p);
@@ -466,7 +455,7 @@ struct cmp {
 		about = c;
 	}
 	bool operator()(const point& p, const point& q) const {
-		double cr = cross(vec(about, p), vec(about, q));
+		ld cr = cross(vec(about, p), vec(about, q));
 		if (fabs(cr) < EPS)
 			return make_pair(p.Y, p.X) < make_pair(q.Y, q.X);
 		return cr > 0;
@@ -508,7 +497,19 @@ void convexHull(vector<point> pnts, vector<point> &convex) {
 	}
 }
 
-int main(){
+int main()
+{
 
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+    #ifdef LOCAL
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif // LOCAL
+
+    int t; cin >> t; while(t--){
+
+
+    }
 
 }
