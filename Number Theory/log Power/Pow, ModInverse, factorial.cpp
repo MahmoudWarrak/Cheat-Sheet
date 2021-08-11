@@ -16,14 +16,14 @@ ll FastPower( ll x , ll n )
 }
 
 ll ModInverse( ll x ){
-    return FastPow ( x , MOD-2) ;
+    return FastPower ( x , MOD-2) ;
 }
 
 void Fac( )
 {
     fact[0] = 1, inv[0] = 1 ;
     for( int i = 1 ; i < MAX ; i ++ ){
-        fact1[i] = ( fact[i-1] * i ) % MOD ;
+        fact[i] = ( fact[i-1] * i ) % MOD ;
         inv[i] = ModInverse ( fact[i] ) ;
     }
 }
