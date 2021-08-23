@@ -298,6 +298,14 @@ void getCommonTangents(point c1, ld r1, point c2, ld r2, vector<segment> &res) {
   res.push_back(segment(c1 + v2 * r1, c2 - v2 * r2));
 }
 
+ld calcArc(point p1, point p2) {
+	ld d = length(vec(p1, p2));
+	ld ang = (angle(vec(cen, p1)) - angle(vec(cen, p2))) * 180 / M_PI;
+	if (ang < 0)
+		ang += 360;
+	ang = min(ang, 360 - ang);
+	return r * ang * M_PI / 180;
+}
 // minimum enclosing circle
 //init p array with the points and ps with the number of points
 //cen and rad are result circle
