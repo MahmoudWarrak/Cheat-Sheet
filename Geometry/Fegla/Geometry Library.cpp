@@ -81,6 +81,14 @@ ld pointSegmentDist(const point& a, const point& b, const point& p) {
 		return length(vec(b,p));
 	return pointLineDist(a, b, p);
 }
+point projectedPointOnLine(point &A,point &B,point &p){
+  	point e1 = B-A;
+  	point e2 = p-A;
+  	double val = dot(e1, e2);
+  	double len = dot(e1,e1);
+  	point ret = A + val*e1/len;
+  	return ret + ret - p ;
+}
 
 int segmentLatticePointsCount(int x1, int y1, int x2, int y2) {
 	return abs(__gcd(x1 - x2, y1 - y2)) + 1;
