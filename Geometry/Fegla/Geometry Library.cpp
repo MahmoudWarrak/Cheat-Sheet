@@ -30,6 +30,11 @@ enum STATE {
 	IN, OUT, BOUNDRY
 };
 
+
+point projectOnLine(point p, point a, point b) {
+    return a + vect(a, b) * dot(vect(a, p), vect(a, b)) / length2(vect(a, b));
+}
+
 bool intersect(const point &a, const point &b, const point &p, const point &q,
               point &ret) {
     //handle degenerate cases (2 parallel lines, 2 identical lines,   line is 1 point)
