@@ -2,6 +2,7 @@
 // Try to handle the Corner Cases.
 
 #include <bits/stdc++.h>
+using namespace std;
 
 typedef complex<long double> point;
 #define sz(a) ((int)(a).size())
@@ -32,7 +33,7 @@ enum STATE {
 
 
 point projectOnLine(point p, point a, point b) {
-    return a + vect(a, b) * dot(vect(a, p), vect(a, b)) / length2(vect(a, b));
+    return a + vec(a, b) * dot(vec(a, p), vec(a, b)) / length(vec(a, b));
 }
 
 bool intersect(const point &a, const point &b, const point &p, const point &q,
